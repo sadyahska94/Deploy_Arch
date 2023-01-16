@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set variables for the script
-echo -n "Enter the name of the disk you want to install on"
-echo -n "/dev/nvme0n1p for SSD, /dev/sda for HDD, /dev/vda for virtmanager"
+echo -n "Enter the name of the disk you want to install on"\n
+echo -n "/dev/nvme0n1p for SSD, /dev/sda for HDD, /dev/vda for virtmanager"\n
 read DISK
 
 # Partition the disk
