@@ -107,12 +107,12 @@ sed -i 's/^# %wheel/%wheel/' /etc/sudoers
 
 # Set up EFI bootloader
 mkdir /boot/EFI
-mount /dev/nvme0n1p1 /boot/EFI
+mount ${DISK}1 /boot/EFI
 
 grub-install --target=x86_64-efi --bootloader-id=grub_uefi --recheck
 
 sed -i 's/GRUB_ENABLE_CRYPTODISK=n/GRUB_ENABLE_CRYPTODISK=y/' /etc/default/grub
-echo 'GRUB_CMDLINE_LINUX="cryptdevice=/dev/'$DISK'3:mapper:allow-discards"' >> /etc/default/grub
+echo 'GRUB_CMDLINE_LINUX="cryptdevice='$DISK'3:mapper:allow-discards"' >> /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Install desktop environment and additional software
