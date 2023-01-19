@@ -5,7 +5,7 @@ DISK="/dev/vda"
 
 
 # Partition the disk
-sfdisk ${DISK} << EOF
+yes | sfdisk ${DISK} << EOF
 label: gpt
 size=300M, type=ef00
 size=512M, type=8300
@@ -17,8 +17,24 @@ mkfs.fat -F32 ${DISK}1
 mkfs.ext4 ${DISK}2
 
 # LUKS encryption on root partition
-cryptsetup luksFormat ${DISK}3
-cryptsetup open --type luks ${DISK}3 root
+# LUKS encryption using expect
+# This will run the commands and automatically enter the passphrase when prompted
+# The passphrase is "mypassphrase"
+
+#!/usr/bin/expect
+
+spawn cryptsetup luksFormat ${DISK}3
+expect "Enter passphrase: "
+send "mypassphrase\r"
+expect "Verify passphrase: "
+send "mypassphrase\r"
+expect eof
+
+spawn cryptsetup open --type luks ${DISK}3 root
+expect "Enter passphrase for /dev/vda3: "
+send "mypassphrase\r"
+expect eof
+
 
 # Format the root partition with btrfs
 mkfs.btrfs /dev/mapper/root
