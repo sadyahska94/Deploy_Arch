@@ -98,8 +98,6 @@ useradd -m -g users -G wheel,users,power,audio,storage,input,video $user
 echo "Enter password for new $user :"
 passwd $user
 
-#!/bin/bash
-
 # Uncomment wheel group in /etc/sudoers
 sed -i 's/^# %wheel/%wheel/' /etc/sudoers
 
