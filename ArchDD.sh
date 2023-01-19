@@ -90,7 +90,7 @@ echo -e "Enter the desired hostname on\n"
 read myhostname
 echo $myhostname > /etc/hostname
 
-echo "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 myhostname.localdomain myhostname" >> /etc/hosts
+echo "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 $myhostname.localdomain $myhostname" >> /etc/hosts
 
 echo -e "Enter password for Administrator\n"
 passwd
