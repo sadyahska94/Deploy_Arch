@@ -3,12 +3,8 @@
 # Set variables for the script
 DISK="/dev/vda"
 
-# Partition the disk
-yes | sfdisk ${DISK} << EOF
-label: gpt
-size=512M, type=ef00
-size=11G, type=8300
-EOF
+yes | sfdisk ${DISK} << EOF; label: gpt; size=512M, type=ef00; size=11G, type=8300; EOF
+
 
 # Format the partitions
 mkfs.fat -F32 ${DISK}1
