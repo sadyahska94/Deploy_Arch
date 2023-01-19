@@ -86,18 +86,20 @@ locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Set the hostname
-echo "myhostname" > /etc/hostname
+echo -e "Enter the desired hostname on\n"
+read myhostname
+echo $myhostname > /etc/hostname
 
 echo "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 myhostname.localdomain myhostname" >> /etc/hosts
 
-echo "Enter password for Administrator"
+echo -e "Enter password for Administrator\n"
 passwd
 
-echo -n "Enter name for the new user"
+echo -e "Enter name for the new user\n"
 read user
 
 useradd -m -g users -G wheel,users,power,audio,storage,input,video $user
-echo "Enter password for new $user :"
+echo -e "Enter password for new $user :\n"
 passwd $user
 
 #!/bin/bash
