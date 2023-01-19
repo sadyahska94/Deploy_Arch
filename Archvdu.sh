@@ -7,7 +7,7 @@ DISK="/dev/vda"
 yes | sfdisk ${DISK} << EOF
 label: gpt
 size=512M, type=ef00
-size=, type=8300
+size=11G, type=8300
 EOF
 
 # Format the partitions
