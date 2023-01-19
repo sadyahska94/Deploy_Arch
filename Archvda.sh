@@ -85,7 +85,7 @@ locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 # Set the hostname
-echo "myhostname" > /etc/hostname
+echo "ad" > /etc/hostname
 
 echo "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 myhostname.localdomain myhostname" >> /etc/hosts
 
