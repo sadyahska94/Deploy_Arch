@@ -5,10 +5,9 @@ DISK="/dev/vda"
 
 
 # Partition the disk
-sfdisk ${DISK} << EOF
+yes | sfdisk ${DISK} << EOF
 label: gpt
-size=300M, type=ef00
-size=512M, type=8300
+size=512M, type=ef00
 size=, type=8300
 EOF
 
